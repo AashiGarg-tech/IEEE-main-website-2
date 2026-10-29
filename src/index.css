@@ -6,22 +6,23 @@
    IEEE IGDTUW — BRAND COLOUR PALETTE
 ========================================== */
 
+
 :root {
     color-scheme: light;
 
-    --palette-sage: #B2B39D;
+    --palette-sage: #B2B9C5;
     --palette-queen-blue: #476998;
     --palette-blue-nude: #28518A;
     --palette-konjo: #043473;
     --palette-grey: #8B9091;
-    --palette-green-mesh: #D7D6AE;
+    --palette-green-mesh: #E9E6D0;
     --palette-papaya: #E4D076;
 
-    /* Light theme */
-    --bg: #D7D6AE;
-    --bg-alt: #B2B39D;
-    --surface: #D7D6AE;
-    --surface-hover: #B2B39D;
+    /* Light theme: warm ivory + soft blue */
+    --bg: #dae9f5;
+    --bg-alt: #E2E9EE;
+    --surface: #F8F6ED;
+    --surface-hover: #E7EBE9;
 
     --fg: #043473;
     --fg-muted: #28518A;
@@ -29,19 +30,18 @@
 
     --accent: #28518A;
     --accent-hover: #043473;
-    --accent-text: #D7D6AE;
+    --accent-text: #F5F3E8;
 
     --secondary: #476998;
     --ink: #043473;
     --highlight: #E4D076;
 
-    --border: #B2B39D;
-    --card-shadow: 0 12px 35px rgba(4, 52, 115, 0.16);
-    --glow: rgba(71, 105, 152, 0.25);
+    --border: #C6D0D6;
+    --card-shadow: 0 12px 35px rgba(4, 52, 115, 0.12);
+    --glow: rgba(71, 105, 152, 0.22);
 
     --chapter-hover: #28518A;
-    --chapter-hover-bg: rgba(178, 179, 157, 0.28);
-
+    --chapter-hover-bg: rgba(71, 105, 152, 0.12);
 
 }
 

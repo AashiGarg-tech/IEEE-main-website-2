@@ -161,3 +161,71 @@ display: inline-flex;
         display: none !important;
     }
 }
+
+/* ==========================================
+   NAVBAR THEME REFINEMENT
+========================================== */
+
+.ieee-tube {
+    background: var(--nav-bg);
+    border: 1px solid var(--nav-border);
+    box-shadow: var(--nav-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Light theme: soft ivory glass with navy accents */
+.ieee-navbar:not([data-dark="true"]) .ieee-tube {
+    background: rgba(248, 247, 238, 0.88);
+    border-color: rgba(4, 52, 115, 0.16);
+    box-shadow:
+        0 8px 24px rgba(4, 52, 115, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+/* Keep the logo crisp */
+.ieee-navbar .ieee-tube--logo img {
+    object-fit: contain;
+}
+
+/* Mobile menu button */
+.ieee-menu-btn {
+    color: var(--fg);
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.ieee-navbar:not([data-dark="true"]) .ieee-menu-btn {
+    color: #043473;
+}
+
+/* Mobile dropdown panel */
+.ieee-tube-panel {
+    margin: 12px 20px 0;
+    padding: 12px;
+    border: 1px solid var(--nav-border);
+    border-radius: 20px;
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.ieee-navbar:not([data-dark="true"]) .ieee-tube-panel {
+    background: rgba(248, 247, 238, 0.96);
+    border-color: rgba(4, 52, 115, 0.15);
+}
+
+/* Light-theme mobile links */
+.ieee-navbar:not([data-dark="true"]) .ieee-tube-panel a {
+    color: #043473 !important;
+}
+
+.ieee-navbar:not([data-dark="true"]) .ieee-tube-panel a:hover {
+    background: rgba(71, 105, 152, 0.10);
+}

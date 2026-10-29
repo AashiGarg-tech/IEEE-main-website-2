@@ -122,9 +122,9 @@ function FlipCard({ item, index, reduce }) {
             className="absolute inset-0 flex flex-col rounded-xl border p-5"
             style={{
               ...face,
-              background: PAPAYA,
-              borderColor: PAPAYA,
-              color: PAPAYA_INK,
+              background: "var(--surface)",
+              borderColor: "var(--border)",
+              color: "var(--fg)",
               transform: "rotateY(180deg)",
               boxShadow: "var(--card-shadow)",
             }}
@@ -209,41 +209,12 @@ export default function FAQ() {
             <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.88] tracking-[-0.075em]">
               Got
               <span className="block">questions?</span>
-              <span className="block">
-                <span className="relative inline-block">
-                  <span className="relative z-10" style={{ color: PAPAYA }}>
-                    We&rsquo;ve got
-                  </span>
-                  <span
-                    className="absolute bottom-[2%] left-0 h-[16%] w-full opacity-50"
-                    style={{ backgroundColor: "var(--secondary)" }}
-                  />
-                </span>
-              </span>
-              <span className="block">
-                <span className="relative inline-block">
-                  <span className="relative z-10" style={{ color: PAPAYA }}>
-                    answers.
-                  </span>
-                  <span
-                    className="absolute bottom-[2%] left-0 h-[16%] w-full opacity-50"
-                    style={{ backgroundColor: "var(--secondary)" }}
-                  />
-                </span>
-              </span>
+              
             </h2>
           </div>
 
           {/* Description */}
-          <div className="flex items-end lg:col-span-3 lg:pb-3">
-            <p
-              className="max-w-[290px] text-base leading-7 sm:text-lg sm:leading-8"
-              style={{ color: "var(--fg-muted)" }}
-            >
-              Everything you need to know about IEEE at IGDTUW. Tap a card to
-              flip it.
-            </p>
-          </div>
+          
         </div>
 
         {/* ── Cards ── */}
