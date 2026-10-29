@@ -342,3 +342,76 @@
 .ieee-footer.is-visible .ieee-footer__legal {
     opacity: 1;
 }
+
+/* ==========================================
+   IEEE FOOTER — LIGHT THEME
+   Preserves the existing footer layout
+========================================== */
+
+html:not(.dark) .ieee-footer {
+  --footer-bg: #E5EDF3;
+  --footer-surface: #F5F6F1;
+  --footer-text: #043473;
+  --footer-muted: #476998;
+  --footer-border: #C9D7E4;
+  --footer-accent: #28518A;
+  --footer-shadow: 0 12px 32px rgba(4, 52, 115, 0.07);
+
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid var(--footer-border);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__tagline,
+html:not(.dark) .ieee-footer .ieee-footer__address,
+html:not(.dark) .ieee-footer .ieee-footer__legal p {
+  color: var(--footer-muted);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__label {
+  color: var(--footer-text);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__mail,
+html:not(.dark) .ieee-footer .ieee-footer__top {
+  color: var(--footer-accent);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__icon {
+  color: var(--footer-accent);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--footer-border);
+  box-shadow: var(--footer-shadow);
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__icon:hover {
+  color: #FFFFFF;
+  background: #043473;
+  border-color: #043473;
+  transform: translateY(-3px);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__rule {
+  background-color: var(--footer-border);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__logo-mark {
+  background-color: var(--footer-text);
+}
+
+html:not(.dark) .ieee-footer .ieee-footer__arrow {
+  color: var(--footer-accent);
+}
+
+/* Smooth transition between themes */
+.ieee-footer {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}

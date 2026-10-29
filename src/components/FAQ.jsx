@@ -122,9 +122,9 @@ function FlipCard({ item, index, reduce }) {
             className="absolute inset-0 flex flex-col rounded-xl border p-5"
             style={{
               ...face,
-              background: "#D7D6AE",
-              borderColor: PAPAYA,
-              color: PAPAYA_INK,
+              background: "var(--surface)",
+              borderColor: "var(--border)",
+              color: "var(--fg)",
               transform: "rotateY(180deg)",
               boxShadow: "var(--card-shadow)",
             }}

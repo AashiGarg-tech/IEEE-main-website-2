@@ -363,7 +363,7 @@ export default function People() {
   return (
     <section
       id="team"
-      className="overflow-hidden bg-[#B2B39D] text-[#043473] dark:bg-[#28518A] dark:text-[#E4D076]"
+      className="overflow-hidden bg-[#E3EBF0] text-[#043473] dark:bg-[#28518A] dark:text-[#E4D076]"
     >
       <div className="mx-auto max-w-[1800px] px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
 

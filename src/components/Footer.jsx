@@ -88,9 +88,11 @@ export default function Footer() {
     <>
       {/* JOIN / SUBSCRIBE SECTION */}
       <section
-        id="join"
-        className="relative overflow-hidden bg-[#325086] text-[#f8f5ec]"
-      >
+  id="join"
+  className="relative overflow-hidden
+             bg-[#E3E9EE] text-[#F8F5EC]
+             dark:bg-[#325086] dark:text-[#F8F5EC]"
+>
         {/* Decorative circle */}
         <div className="pointer-events-none absolute -right-32 -top-72 h-[450px] w-[450px] rounded-full border border-white/25 sm:-right-24 sm:-top-80 sm:h-[600px] sm:w-[600px]" />
 
@@ -115,11 +117,13 @@ export default function Footer() {
               <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.91] tracking-[-0.075em]">
                 <span className="block">The future is</span>
 
-                <span className="block bg-[#325086] text-ink">
+                <span className="block bg-[#E3E9EE]
+             dark:bg-[#325086] text-ink">
                   under
                 </span>
 
-                <span className="block bg-[#325086] text-ink">
+                <span className="block bg-[#E3E9EE]
+             dark:bg-[#325086] text-ink">
                   construction.
                 </span>
               </h2>
