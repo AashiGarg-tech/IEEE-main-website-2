@@ -10,6 +10,7 @@ const navLinks = [
     { label: 'EVENTS', href: '#events' },
     { label: 'CHAPTERS', href: '#chapters' },
     { label: 'PEOPLE', href: '#team' },
+     { label: 'FAQ', href: '#faq' },
     { label: 'JOIN US', href: '#join' },
 ];
 
