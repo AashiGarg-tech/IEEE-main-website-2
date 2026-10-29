@@ -89,7 +89,7 @@ export default function Footer() {
       {/* JOIN / SUBSCRIBE SECTION */}
       <section
         id="join"
-        className="relative overflow-hidden bg-accent text-[#f8f5ec]"
+        className="relative overflow-hidden bg-[#325086] text-[#f8f5ec]"
       >
         {/* Decorative circle */}
         <div className="pointer-events-none absolute -right-32 -top-72 h-[450px] w-[450px] rounded-full border border-white/25 sm:-right-24 sm:-top-80 sm:h-[600px] sm:w-[600px]" />
@@ -115,11 +115,11 @@ export default function Footer() {
               <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.91] tracking-[-0.075em]">
                 <span className="block">The future is</span>
 
-                <span className="block bg-accent text-ink">
+                <span className="block bg-[#325086] text-ink">
                   under
                 </span>
 
-                <span className="block bg-accent text-ink">
+                <span className="block bg-[#325086] text-ink">
                   construction.
                 </span>
               </h2>
@@ -135,31 +135,33 @@ export default function Footer() {
                 onSubmit={handleSubscribe}
                 className="mt-10"
               >
-                <div className="flex items-center gap-4 border-b border-white/75 pb-4">
 
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value)
-                      setMessage('')
-                    }}
-                    placeholder="your@email.com"
-                    aria-label="Your email address"
-                    required
-                    className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/70 focus:placeholder:text-white/40"
-                  />
+<div className="flex items-center gap-3 rounded-lg border border-white/40 p-1.5 transition-colors focus-within:border-white/70">
 
-                  <button
-                    type="submit"
-                    className="group flex shrink-0 items-center gap-3 text-xs font-semibold transition-opacity hover:opacity-70"
-                  >
-                    SUBSCRIBE
+<input
+  type="email"
+  value={email}
+  onChange={(e) => {
+    setEmail(e.target.value)
+    setMessage('')
+  }}
+  placeholder="your@email.com"
+  aria-label="Your email address"
+  required
+  className="min-w-0 flex-1 rounded-md bg-[#0B2D5C] px-3 py-2 text-sm text-white outline-none placeholder:text-white/70 focus:placeholder:text-white/40"
+/>
 
-                    <span className="text-xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-                      ↗
-                    </span>
-                  </button>
+  <button
+    type="submit"
+    className="group flex shrink-0 items-center gap-3 rounded-md border border-[#0B2D5C] bg-[#0B2D5C] px-4 py-2 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#164780]"
+  >
+    SUBSCRIBE
+
+    <span className="text-xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
+      ↗
+    </span>
+  </button>
+
                 </div>
 
                 {message && (
