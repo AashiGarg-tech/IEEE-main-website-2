@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
+/* Green Papaya palette */
+const PAPAYA = "#E4D076";
+const PAPAYA_INK = "#0A2A5E"; // dark navy text that stays readable on papaya
+
 /* ------------------------------------------------------------------
-   1. EDIT THIS: your questions and answers.
+   EDIT THIS: your questions and answers.
    The answers are general placeholder text. Replace them with your
    branch's real details (links, fees, social handles, etc.).
 ------------------------------------------------------------------- */
@@ -29,103 +33,14 @@ const FAQS = [
   },
 ];
 
-/* ------------------------------------------------------------------
-   2. EDIT THIS: colours for each theme.
-   These are matched by eye to your site's screenshots, so tweak any
-   hex value here if a colour looks slightly off.
-   Light theme: cream background, navy text.
-   Dark theme:  blue background, gold text.
-   Cards flip to the opposite look on the back.
-------------------------------------------------------------------- */
-const THEMES = {
-  light: {
-    bg: "#d4d3a6",
-    heading: "#0a3a85",
-    sub: "#2c5aa0",
-    frontBg: "#e4e2ba",
-    frontBorder: "rgba(10,58,133,0.28)",
-    frontText: "#0a3a85",
-    hint: "#4a6aa5",
-    icon: "#0a3a85",
-    notch: "rgba(10,58,133,0.3)",
-    backBg: "#0a3a85",
-    backBorder: "#0a3a85",
-    backText: "#EBCE5D",
-    backNotch: "#EBCE5D",
-    focus: "#0a3a85",
-  },
-  dark: {
-    bg: "#0b3a80",
-    heading: "#E8D27A",
-    sub: "#c8d6ea",
-    frontBg: "#08306d",
-    frontBorder: "rgba(232,210,122,0.35)",
-    frontText: "#E8D27A",
-    hint: "#a9c6db",
-    icon: "#E8D27A",
-    notch: "rgba(232,210,122,0.35)",
-    backBg: "#e3dca4",
-    backBorder: "#e3dca4",
-    backText: "#0a3a85",
-    backNotch: "#0a3a85",
-    focus: "#E8D27A",
-  },
-};
-
-/* ------------------------------------------------------------------
-   3. Theme detection.
-   Watches the page for a "dark" class or a data-theme / data-mode
-   attribute on <html> or <body> and updates when your toggle changes it.
-   If the FAQ doesn't switch when you press the toggle, tell me how your
-   ThemeProvider stores the theme and I'll connect to it directly.
-------------------------------------------------------------------- */
-const ATTRS = ["class", "data-theme", "data-mode", "data-color-scheme", "theme"];
-
-function readIsDark() {
-  const els = [document.documentElement, document.body];
-  for (const el of els) {
-    if (!el) continue;
-    const cls = el.className || "";
-    if (typeof cls === "string") {
-      if (/\bdark\b/i.test(cls)) return true;
-      if (/\blight\b/i.test(cls)) return false;
-    }
-    for (const a of ATTRS.slice(1)) {
-      const v = el.getAttribute(a);
-      if (v) return v.toLowerCase().includes("dark");
-    }
-    const cs = el.style && el.style.colorScheme;
-    if (cs) return cs.includes("dark");
-  }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
-}
-
-function useIsDark() {
-  const [isDark, setIsDark] = useState(() =>
-    typeof document === "undefined" ? false : readIsDark()
-  );
-
-  useEffect(() => {
-    const update = () => setIsDark(readIsDark());
-    update();
-    const obs = new MutationObserver(update);
-    [document.documentElement, document.body].forEach((el) =>
-      obs.observe(el, { attributes: true, attributeFilter: ATTRS })
-    );
-    return () => obs.disconnect();
-  }, []);
-
-  return isDark;
-}
-
-function ChipIcon({ color }) {
+function ChipIcon() {
   return (
     <svg
       width="26"
       height="26"
       viewBox="0 0 24 24"
       fill="none"
-      stroke={color}
+      stroke="currentColor"
       strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -138,20 +53,17 @@ function ChipIcon({ color }) {
   );
 }
 
-function FlipCard({ item, reduce, t }) {
+function FlipCard({ item, index, reduce }) {
   const [flipped, setFlipped] = useState(false);
 
   const face = {
     backfaceVisibility: "hidden",
     WebkitBackfaceVisibility: "hidden",
-    transition: reduce
-      ? "none"
-      : "background-color .3s, border-color .3s, color .3s",
   };
 
   return (
     <div
-      className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.75rem)]"
+      className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
       style={{ perspective: 900 }}
     >
       <button
@@ -159,8 +71,8 @@ function FlipCard({ item, reduce, t }) {
         onClick={() => setFlipped((f) => !f)}
         aria-pressed={flipped}
         aria-label={item.q}
-        className="relative block h-56 w-full rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
-        style={{ outlineColor: t.focus }}
+        className="relative block h-60 w-full rounded-xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+        style={{ outlineColor: "var(--fg)" }}
       >
         <motion.span
           className="absolute inset-0 block"
@@ -178,45 +90,52 @@ function FlipCard({ item, reduce, t }) {
             className="absolute inset-0 flex flex-col rounded-xl border p-5"
             style={{
               ...face,
-              background: t.frontBg,
-              borderColor: t.frontBorder,
+              background: "color-mix(in srgb, var(--bg) 60%, transparent)",
+              borderColor: "var(--border)",
+              color: "var(--fg)",
+              boxShadow: "var(--card-shadow)",
             }}
           >
-            <span
-              className="mx-auto mb-4 block h-1.5 w-10 rounded-full"
-              style={{ background: t.notch }}
-            />
-            <ChipIcon color={t.icon} />
-            <span
-              className="mt-3 block text-base font-semibold leading-snug"
-              style={{ color: t.frontText }}
-            >
+            <span className="flex items-center justify-between">
+              <ChipIcon />
+              <span
+                className="rounded-full px-2.5 py-1 text-xs font-bold tracking-[0.2em]"
+                style={{ background: PAPAYA, color: PAPAYA_INK }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+            </span>
+            <span className="mt-4 block text-lg font-semibold leading-snug tracking-[-0.03em]">
               {item.q}
             </span>
-            <span className="mt-auto block text-xs" style={{ color: t.hint }}>
-              Flip for the answer
+            <span
+              className="mt-auto inline-block self-start border-b-4 pb-1 text-[11px] font-bold tracking-[0.2em]"
+              style={{ color: "var(--fg)", borderColor: PAPAYA }}
+            >
+              FLIP FOR THE ANSWER
             </span>
           </span>
 
-          {/* BACK: the answer */}
+          {/* BACK: the answer (Green Papaya) */}
           <span
             aria-hidden={!flipped}
             className="absolute inset-0 flex flex-col rounded-xl border p-5"
             style={{
               ...face,
-              background: t.backBg,
-              borderColor: t.backBorder,
+              background: PAPAYA,
+              borderColor: PAPAYA,
+              color: PAPAYA_INK,
               transform: "rotateY(180deg)",
+              boxShadow: "var(--card-shadow)",
             }}
           >
             <span
-              className="mx-auto mb-4 block h-1.5 w-10 rounded-full"
-              style={{ background: t.backNotch }}
-            />
-            <span
-              className="block text-sm leading-relaxed sm:text-base"
-              style={{ color: t.backText }}
+              className="mb-3 block text-[11px] font-bold tracking-[0.2em]"
+              style={{ color: PAPAYA_INK, opacity: 0.7 }}
             >
+              ANSWER
+            </span>
+            <span className="block text-sm font-medium leading-relaxed sm:text-base">
               {item.a}
             </span>
           </span>
@@ -228,33 +147,115 @@ function FlipCard({ item, reduce, t }) {
 
 export default function FAQ() {
   const reduce = useReducedMotion();
-  const isDark = useIsDark();
-  const t = isDark ? THEMES.dark : THEMES.light;
 
   return (
     <section
       id="faq"
-      className="px-4 py-16 sm:px-6 sm:py-24"
-      style={{
-        background: t.bg,
-        transition: reduce ? "none" : "background-color .3s",
-      }}
+      className="relative isolate overflow-hidden bg-bg text-fg"
     >
-      <div className="mx-auto max-w-5xl">
-        <h2
-          className="text-center text-3xl font-bold sm:text-4xl"
-          style={{ color: t.heading }}
-        >
-          Frequently Asked Questions
-        </h2>
-        <p className="mt-3 text-center" style={{ color: t.sub }}>
-          Tap a card to flip it.
-        </p>
+      {/* Soft background gradient (same idea as the Hero, but lighter) */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-30"
+        style={{
+          background: `
+            radial-gradient(
+              ellipse at 82% 30%,
+              color-mix(in srgb, var(--palette-queen-blue) 38%, var(--bg)) 0%,
+              color-mix(in srgb, var(--palette-queen-blue) 14%, var(--bg)) 40%,
+              var(--bg) 75%
+            )
+          `,
+        }}
+      />
 
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
-          {FAQS.map((item) => (
-            <FlipCard key={item.q} item={item} reduce={reduce} t={t} />
-          ))}
+      {/* Decorative grid (same as Hero) */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-20 opacity-[0.16]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, var(--palette-sage) 1px, transparent 1px),
+            linear-gradient(to bottom, var(--palette-sage) 1px, transparent 1px)
+          `,
+          backgroundSize: "72px 72px",
+          maskImage:
+            "linear-gradient(to right, transparent, black 35%, black 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 35%, black 100%)",
+        }}
+      />
+
+      {/* Ambient Green Papaya glow */}
+      <div
+        className="pointer-events-none absolute right-0 top-1/4 -z-10 h-[420px] w-[420px] rounded-full opacity-30 blur-[100px]"
+        style={{ backgroundColor: PAPAYA }}
+      />
+
+      <div className="mx-auto max-w-[1800px] px-6 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+        {/* ── Section header (same layout as THE PEOPLE) ── */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* Label */}
+          <div className="lg:col-span-3">
+            <p
+              className="pt-2 text-xs font-semibold tracking-[0.2em]"
+              style={{ color: "var(--fg-muted)" }}
+            >
+              <span className="text-blue-nude dark:text-highlight">05&nbsp;</span>
+              FAQ
+            </p>
+          </div>
+
+          {/* Main heading — same type as the other section titles */}
+          <div className="lg:col-span-6">
+            <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.88] tracking-[-0.075em]">
+              Got
+              <span className="block">questions?</span>
+              <span className="block">
+                <span className="relative inline-block">
+                  <span className="relative z-10" style={{ color: PAPAYA }}>
+                    We&rsquo;ve got
+                  </span>
+                  <span
+                    className="absolute bottom-[2%] left-0 h-[16%] w-full opacity-50"
+                    style={{ backgroundColor: "var(--secondary)" }}
+                  />
+                </span>
+              </span>
+              <span className="block">
+                <span className="relative inline-block">
+                  <span className="relative z-10" style={{ color: PAPAYA }}>
+                    answers.
+                  </span>
+                  <span
+                    className="absolute bottom-[2%] left-0 h-[16%] w-full opacity-50"
+                    style={{ backgroundColor: "var(--secondary)" }}
+                  />
+                </span>
+              </span>
+            </h2>
+          </div>
+
+          {/* Description */}
+          <div className="flex items-end lg:col-span-3 lg:pb-3">
+            <p
+              className="max-w-[290px] text-base leading-7 sm:text-lg sm:leading-8"
+              style={{ color: "var(--fg-muted)" }}
+            >
+              Everything you need to know about IEEE at IGDTUW. Tap a card to
+              flip it.
+            </p>
+          </div>
+        </div>
+
+        {/* ── Cards ── */}
+        <div
+          className="mt-16 border-t pt-10 sm:mt-20"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <div className="flex flex-wrap justify-center gap-6">
+            {FAQS.map((item, i) => (
+              <FlipCard key={item.q} item={item} index={i} reduce={reduce} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
