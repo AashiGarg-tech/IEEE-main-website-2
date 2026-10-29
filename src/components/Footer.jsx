@@ -23,11 +23,10 @@ export default function Footer() {
       {/* JOIN / SUBSCRIBE SECTION */}
       <section
         id="join"
-        className="relative overflow-hidden bg-accent text-[#f8f5ec]"
+        className="relative overflow-hidden bg-[#D7D6AE] text-[#043473] dark:bg-[#476998] dark:text-[#E4D076]"
       >
         {/* Decorative circle */}
-        <div className="pointer-events-none absolute -right-32 -top-72 h-[450px] w-[450px] rounded-full border border-white/25 sm:-right-24 sm:-top-80 sm:h-[600px] sm:w-[600px]" />
-
+        <div className="pointer-events-none absolute -right-32 -top-72 h-[450px] w-[450px] rounded-full border border-[#B2B39D] dark:border-white/25 sm:-right-24 sm:-top-80 sm:h-[600px] sm:w-[600px]" />
         <div className="relative mx-auto max-w-[1800px] px-6 py-16 sm:px-10 sm:py-20 lg:px-16 lg:py-24">
 
           {/* Top label */}
@@ -47,13 +46,13 @@ export default function Footer() {
             {/* Heading */}
             <div className="lg:col-span-7">
               <h2 className="text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.91] tracking-[-0.075em]">
-                <span className="block">The future is</span>
+                <span className="block text-[#043473] dark:text-[#E4D076]">The future is</span>
 
-                <span className="block bg-accent text-ink">
+                <span className="block text-[#476998] dark:text-[#D7D6AE]">
                   under
                 </span>
 
-                <span className="block bg-accent text-ink">
+                <span className="block text-[#476998] dark:text-[#D7D6AE]">
                   construction.
                 </span>
               </h2>
@@ -69,7 +68,7 @@ export default function Footer() {
                 onSubmit={handleSubscribe}
                 className="mt-10"
               >
-                <div className="flex items-center gap-4 border-b border-white/75 pb-4">
+               <div className="flex items-center gap-4 rounded-full border-2 border-[var(--heading)] px-5 py-3">
 
                   <input
                     type="email"
@@ -81,7 +80,8 @@ export default function Footer() {
                     placeholder="your@email.com"
                     aria-label="Your email address"
                     required
-                    className="min-w-0 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-white/70 focus:placeholder:text-white/40"
+                    style={{ backgroundColor: 'var(--bg-alt)' }}
+                    className="min-w-0 flex-1 rounded-lg border-0 px-3 py-1.5 text-center text-sm text-[var(--fg)] outline-none placeholder:text-[var(--fg-muted)]/70 focus:placeholder:text-[var(--fg-muted)]/40"
                   />
 
                   <button
@@ -111,7 +111,8 @@ export default function Footer() {
       </section>
 
       {/* BLACK FOOTER */}
-      <footer className="bg-ink text-[#f5f2e9]">
+      
+        <footer className="bg-[#043473] text-[#D7D6AE] dark:bg-[#D7D6AE] dark:text-[#043473]">
         <div className="mx-auto max-w-[1800px] px-6 sm:px-10 lg:px-16">
 
           {/* Main footer row */}
@@ -123,20 +124,24 @@ export default function Footer() {
               className="flex w-fit items-center gap-3"
               aria-label="IEEE IGDTUW home"
             >
-              <span className="flex h-8 items-center bg-[#f5f2e9] px-2 text-xs font-bold text-black">
-                IEEE
-              </span>
+              
+             <span className="flex h-8 items-center bg-[#D7D6AE] px-2 text-xs font-bold text-[#043473] dark:bg-[#043473] dark:text-[#D7D6AE]">
+              IEEE
+             </span>
 
-              <span className="text-2xl font-bold tracking-[-0.06em] sm:text-3xl">
-                IGDTUW<span className="text-accent-text">.</span>
-              </span>
+              
+             <span className="text-2xl font-bold tracking-[-0.06em] text-[#D7D6AE] dark:text-[#043473] sm:text-3xl">
+              IGDTUW.
+             </span>
+
             </a>
 
             {/* Description */}
-            <div className="text-sm leading-6 text-white/55 lg:justify-self-center">
+            <div className="text-sm leading-6 text-[#043473] dark:text-[#D7D6AE] lg:justify-self-center">
               <p>Advancing technology for humanity.</p>
               <p>New Delhi, India · Est. 2004</p>
             </div>
+
 
             {/* Social links */}
             <div className="flex flex-wrap items-center gap-6 text-xs font-semibold tracking-wider sm:justify-end">
@@ -146,7 +151,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="text-white/80 transition hover:text-accent-text"
+                className="text-[#D7D6AE] transition hover:text-[#E4D076] dark:text-[#043473] dark:hover:text-[#28518A]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -167,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
-                className="text-white/80 transition hover:text-accent-text"
+                className="text-[#D7D6AE] transition hover:text-[#E4D076] dark:text-[#043473] dark:hover:text-[#28518A]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -181,7 +186,7 @@ export default function Footer() {
 
               <a
                 href="mailto:ieee@igdtuw.ac.in"
-                className="group flex items-center gap-2 transition hover:text-accent-text"
+                className="group flex items-center gap-2 text-[#D7D6AE] transition hover:text-[#E4D076] dark:text-[#043473] dark:hover:text-[#28518A]"
               >
                 EMAIL US
                 <span className="text-lg transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -192,8 +197,7 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <div className="flex flex-col gap-3 border-t border-white/20 py-6 text-xs tracking-wide text-white/45 sm:flex-row sm:items-center">
-            <p>© {new Date().getFullYear()} IEEE IGDTUW</p>
+          <div className="flex flex-col gap-3 border-t border-[#B2B39D] py-6 text-xs tracking-wide text-[#043473] dark:border-white/20 dark:text-[#D7D6AE] sm:flex-row sm:items-center">
             <span className="hidden sm:inline">·</span>
             <p>Made with intent</p>
           </div>
